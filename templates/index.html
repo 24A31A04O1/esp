@@ -1,20 +1,32 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>IoT Control</title>
 </head>
 <body>
+
   <h1>ESP32 Control Panel</h1>
 
   {% for d in devices %}
-    <p>
-      Device: {{ d.device_name }} <br>
-      Status: {{ d.status }}
-    </p>
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+      <h3>{{ d.device_name }}</h3>
+
+      <p>
+        Status:
+        <strong>
+          {{ "ON" if d.status else "OFF" }}
+        </strong>
+      </p>
+
+      <a href="/on/{{ d.device_name }}">
+        <button>ON</button>
+      </a>
+
+      <a href="/off/{{ d.device_name }}">
+        <button>OFF</button>
+      </a>
+    </div>
   {% endfor %}
 
-  <a href="/on"><button>ON</button></a>
-  <a href="/off"><button>OFF</button></a>
 </body>
 </html>
